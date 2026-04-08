@@ -85,13 +85,13 @@
     </section>
 
     <nav class="toolbar" aria-label="Filtra le categorie">
-      <button class="chip active" data-filter="all" type="button">Tutti</button>
-      <button class="chip" data-filter="messaging" type="button">Messaggistica</button>
-      <button class="chip" data-filter="checkin" type="button">Check-in</button>
-      <button class="chip" data-filter="pms" type="button">PMS</button>
-      <button class="chip" data-filter="pricing" type="button">Prezzi dinamici</button>
-      <button class="chip" data-filter="ops" type="button">Pulizie</button>
-      <button class="chip" data-filter="locks" type="button">Smart lock</button>
+      <button class="chip active" data-filter="all" type="button" aria-pressed="true">Tutti</button>
+      <button class="chip" data-filter="messaging" type="button" aria-pressed="false">Messaggistica</button>
+      <button class="chip" data-filter="checkin" type="button" aria-pressed="false">Check-in</button>
+      <button class="chip" data-filter="pms" type="button" aria-pressed="false">PMS</button>
+      <button class="chip" data-filter="pricing" type="button" aria-pressed="false">Prezzi dinamici</button>
+      <button class="chip" data-filter="ops" type="button" aria-pressed="false">Pulizie</button>
+      <button class="chip" data-filter="locks" type="button" aria-pressed="false">Smart lock</button>
     </nav>
 
     <section data-group="messaging">
@@ -317,32 +317,64 @@
     const themeBtn = document.getElementById('themeBtn');
     const STORAGE_KEY = 'airbnb-host-tools-theme';
 
+    const getStoredTheme = () => {
+      try {
+        return localStorage.getItem(STORAGE_KEY);
+      } catch {
+        return null;
+      }
+    };
+
+    const setStoredTheme = (value) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, value);
+      } catch {
+        // Ignore storage errors (e.g., privacy mode or denied storage access).
+      }
+    };
+
     const safeGetTheme = () => {
-      const storedTheme = localStorage.getItem(STORAGE_KEY);
+      const storedTheme = getStoredTheme();
       if (storedTheme === 'light' || storedTheme === 'dark') return storedTheme;
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     };
 
     const applyTheme = (nextTheme) => {
       root.setAttribute('data-theme', nextTheme);
-      themeBtn.setAttribute('aria-pressed', String(nextTheme === 'dark'));
-      themeBtn.textContent = nextTheme === 'dark' ? 'Tema: scuro' : 'Tema: chiaro';
-      localStorage.setItem(STORAGE_KEY, nextTheme);
+      if (themeBtn) {
+        themeBtn.setAttribute('aria-pressed', String(nextTheme === 'dark'));
+        themeBtn.textContent = nextTheme === 'dark' ? 'Tema: scuro' : 'Tema: chiaro';
+      }
+      setStoredTheme(nextTheme);
     };
 
     let theme = safeGetTheme();
     applyTheme(theme);
 
-    themeBtn.addEventListener('click', () => {
-      theme = theme === 'dark' ? 'light' : 'dark';
-      applyTheme(theme);
-    });
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        applyTheme(theme);
+      });
+    }
 
     const chips = [...document.querySelectorAll('.chip')];
     const sections = [...document.querySelectorAll('section[data-group]')];
     const cards = [...document.querySelectorAll('.card')];
 
-    const hasTag = (tagList, tag) => new Set(tagList.trim().split(/\s+/).filter(Boolean)).has(tag);
+    const cardTags = new WeakMap();
+    cards.forEach((card) => {
+      const tags = card.dataset.tags || '';
+      cardTags.set(card, new Set(tags.trim().split(/\s+/).filter(Boolean)));
+    });
+
+    const setActiveChip = (selectedChip) => {
+      chips.forEach((chip) => {
+        const isActive = chip === selectedChip;
+        chip.classList.toggle('active', isActive);
+        chip.setAttribute('aria-pressed', String(isActive));
+      });
+    };
 
     const applyFilter = (filter) => {
       if (filter === 'all') {
@@ -352,8 +384,8 @@
       }
 
       cards.forEach((card) => {
-        const tags = card.dataset.tags || '';
-        card.classList.toggle('hidden', !hasTag(tags, filter));
+        const tags = cardTags.get(card) || new Set();
+        card.classList.toggle('hidden', !tags.has(filter));
       });
 
       sections.forEach((section) => {
@@ -364,8 +396,7 @@
 
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
-        chips.forEach((c) => c.classList.remove('active'));
-        chip.classList.add('active');
+        setActiveChip(chip);
         applyFilter(chip.dataset.filter || 'all');
       });
     });
