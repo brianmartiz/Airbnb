@@ -366,10 +366,16 @@
     const sections = [...document.querySelectorAll('section[data-group]')];
     const cards = [...document.querySelectorAll('.card')];
 
+    const tokenize = (value = '') => new Set(value.trim().split(/\s+/).filter(Boolean));
+
     const cardTags = new WeakMap();
     cards.forEach((card) => {
-      const tags = card.dataset.tags || '';
-      cardTags.set(card, new Set(tags.trim().split(/\s+/).filter(Boolean)));
+      cardTags.set(card, tokenize(card.dataset.tags || ''));
+    });
+
+    const sectionTags = new WeakMap();
+    sections.forEach((section) => {
+      sectionTags.set(section, tokenize(section.dataset.group || ''));
     });
 
     const setActiveChip = (selectedChip) => {
@@ -380,6 +386,14 @@
       });
     };
 
+    const scrollToSection = (section) => {
+      if (!section) return;
+      const toolbarOffset = toolbar ? Math.ceil(toolbar.getBoundingClientRect().height) : 0;
+      const topOffset = Math.ceil((topBar?.getBoundingClientRect().height || 0) + toolbarOffset + 8);
+      const targetY = window.scrollY + section.getBoundingClientRect().top - topOffset;
+      window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+    };
+
     const applyFilter = (filter) => {
       if (filter === 'all') {
         cards.forEach((card) => card.classList.remove('hidden'));
@@ -387,15 +401,20 @@
         return;
       }
 
-      cards.forEach((card) => {
-        const tags = cardTags.get(card) || new Set();
-        card.classList.toggle('hidden', !tags.has(filter));
+      let firstVisibleSection = null;
+      sections.forEach((section) => {
+        const tags = sectionTags.get(section) || new Set();
+        const sectionMatches = tags.has(filter);
+        section.classList.toggle('hidden', !sectionMatches);
+        if (sectionMatches && !firstVisibleSection) firstVisibleSection = section;
+
+        [...section.querySelectorAll('.card')].forEach((card) => {
+          const cardTagSet = cardTags.get(card) || new Set();
+          card.classList.toggle('hidden', !cardTagSet.has(filter));
+        });
       });
 
-      sections.forEach((section) => {
-        const visible = [...section.querySelectorAll('.card')].some((card) => !card.classList.contains('hidden'));
-        section.classList.toggle('hidden', !visible);
-      });
+      scrollToSection(firstVisibleSection);
     };
 
     chips.forEach((chip) => {
