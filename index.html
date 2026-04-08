@@ -368,11 +368,6 @@
 
     const tokenize = (value = '') => new Set(value.trim().split(/\s+/).filter(Boolean));
 
-    const cardTags = new WeakMap();
-    cards.forEach((card) => {
-      cardTags.set(card, tokenize(card.dataset.tags || ''));
-    });
-
     const sectionTags = new WeakMap();
     sections.forEach((section) => {
       sectionTags.set(section, tokenize(section.dataset.group || ''));
@@ -407,11 +402,6 @@
         const sectionMatches = tags.has(filter);
         section.classList.toggle('hidden', !sectionMatches);
         if (sectionMatches && !firstVisibleSection) firstVisibleSection = section;
-
-        [...section.querySelectorAll('.card')].forEach((card) => {
-          const cardTagSet = cardTags.get(card) || new Set();
-          card.classList.toggle('hidden', !cardTagSet.has(filter));
-        });
       });
 
       scrollToSection(firstVisibleSection);
