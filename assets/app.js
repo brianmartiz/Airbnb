@@ -7,6 +7,7 @@
   const toolbar = document.querySelector('.toolbar');
   const STORAGE_KEY = 'airbnb-host-tools-theme';
   const filterMeta = document.getElementById('filterMeta');
+  const systemThemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
   const getStoredTheme = () => {
     try {
@@ -27,7 +28,7 @@
   const safeGetTheme = () => {
     const storedTheme = getStoredTheme();
     if (storedTheme === 'light' || storedTheme === 'dark') return storedTheme;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return systemThemeMedia.matches ? 'dark' : 'light';
   };
 
   const applyTheme = (nextTheme) => {
@@ -49,12 +50,33 @@
     });
   }
 
+  const handleSystemThemeChange = (event) => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme === 'light' || storedTheme === 'dark') return;
+    theme = event.matches ? 'dark' : 'light';
+    applyTheme(theme);
+  };
+  if (typeof systemThemeMedia.addEventListener === 'function') {
+    systemThemeMedia.addEventListener('change', handleSystemThemeChange);
+  } else if (typeof systemThemeMedia.addListener === 'function') {
+    systemThemeMedia.addListener(handleSystemThemeChange);
+  }
+
   const chips = [...document.querySelectorAll('.chip')];
   const sections = [...document.querySelectorAll('section[data-group]')];
   const cards = [...document.querySelectorAll('.card')];
   if (!sections.length || !chips.length) return;
 
   const tokenize = (value = '') => new Set(value.trim().split(/\s+/).filter(Boolean));
+  const filterLabels = {
+    all: 'Tutti',
+    messaging: 'Messaggistica',
+    checkin: 'Check-in',
+    pms: 'PMS',
+    pricing: 'Prezzi dinamici',
+    ops: 'Pulizie',
+    locks: 'Smart lock',
+  };
 
   const sectionTags = new WeakMap();
   sections.forEach((section) => {
@@ -78,6 +100,10 @@
   };
 
   const applyFilter = (filter) => {
+    if (!filterLabels[filter]) {
+      filter = 'all';
+    }
+
     if (filter === 'all') {
       cards.forEach((card) => card.classList.remove('hidden'));
       sections.forEach((section) => section.classList.remove('hidden'));
@@ -95,7 +121,7 @@
 
     if (filterMeta) {
       const visibleSections = sections.filter((section) => !section.classList.contains('hidden')).length;
-      filterMeta.textContent = `Filtro attivo: ${filter}. Sezioni visibili: ${visibleSections}.`;
+      filterMeta.textContent = `Filtro attivo: ${filterLabels[filter]}. Sezioni visibili: ${visibleSections}.`;
     }
     scrollToSection(firstVisibleSection);
   };
@@ -107,7 +133,9 @@
     });
   });
 
-  applyFilter('all');
+  const initialActiveChip = chips.find((chip) => chip.classList.contains('active')) || chips[0];
+  setActiveChip(initialActiveChip);
+  applyFilter(initialActiveChip?.dataset.filter || 'all');
 
   const updateToolbarOffset = () => {
     if (!topBar || !toolbar) return;
@@ -117,4 +145,8 @@
 
   updateToolbarOffset();
   window.addEventListener('resize', updateToolbarOffset, { passive: true });
+  if ('ResizeObserver' in window && topBar) {
+    const resizeObserver = new ResizeObserver(updateToolbarOffset);
+    resizeObserver.observe(topBar);
+  }
 })();
