@@ -66,6 +66,7 @@
   const sections = [...document.querySelectorAll('section[data-group]')];
   const cards = [...document.querySelectorAll('.card')];
   if (!sections.length || !chips.length) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const tokenize = (value = '') => new Set(value.trim().split(/\s+/).filter(Boolean));
   const filterLabels = {
@@ -96,7 +97,14 @@
     const toolbarOffset = toolbar ? Math.ceil(toolbar.getBoundingClientRect().height) : 0;
     const topOffset = Math.ceil((topBar?.getBoundingClientRect().height || 0) + toolbarOffset + 8);
     const targetY = window.scrollY + section.getBoundingClientRect().top - topOffset;
-    window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+    window.scrollTo({ top: Math.max(targetY, 0), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  };
+
+  const setQueryFilter = (filter) => {
+    const url = new URL(window.location.href);
+    if (filter === 'all') url.searchParams.delete('categoria');
+    else url.searchParams.set('categoria', filter);
+    window.history.replaceState({}, '', url);
   };
 
   const applyFilter = (filter) => {
@@ -108,6 +116,7 @@
       cards.forEach((card) => card.classList.remove('hidden'));
       sections.forEach((section) => section.classList.remove('hidden'));
       if (filterMeta) filterMeta.textContent = `Stai visualizzando tutte le categorie (${sections.length} sezioni).`;
+      setQueryFilter(filter);
       return;
     }
 
@@ -121,8 +130,11 @@
 
     if (filterMeta) {
       const visibleSections = sections.filter((section) => !section.classList.contains('hidden')).length;
-      filterMeta.textContent = `Filtro attivo: ${filterLabels[filter]}. Sezioni visibili: ${visibleSections}.`;
+      filterMeta.textContent = visibleSections
+        ? `Filtro attivo: ${filterLabels[filter]}. Sezioni visibili: ${visibleSections}.`
+        : `Nessuna sezione trovata per il filtro ${filterLabels[filter]}.`;
     }
+    setQueryFilter(filter);
     scrollToSection(firstVisibleSection);
   };
 
@@ -133,7 +145,10 @@
     });
   });
 
-  const initialActiveChip = chips.find((chip) => chip.classList.contains('active')) || chips[0];
+  const filterFromURL = new URL(window.location.href).searchParams.get('categoria');
+  const initialActiveChip = chips.find((chip) => chip.dataset.filter === filterFromURL)
+    || chips.find((chip) => chip.classList.contains('active'))
+    || chips[0];
   setActiveChip(initialActiveChip);
   applyFilter(initialActiveChip?.dataset.filter || 'all');
 

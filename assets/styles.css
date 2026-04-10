@@ -6,6 +6,8 @@
       radial-gradient(900px 500px at 95% -15%, color-mix(in srgb,var(--surface2) 95%, transparent), transparent 75%),
       var(--bg);color:var(--text);line-height:1.68}
     a{color:inherit} button{font:inherit} h1,h2,h3,h4,p{margin:0}
+    .skip-link{position:absolute;left:12px;top:-44px;background:var(--surface);border:1px solid var(--border);padding:8px 12px;border-radius:10px;z-index:80;text-decoration:none}
+    .skip-link:focus{top:10px}
     .wrap{max-width:1260px;margin:0 auto;padding:0 20px}
     .top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--surface) 88%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 3px 14px rgba(0,0,0,.04)}
     .top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
