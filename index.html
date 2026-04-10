@@ -29,6 +29,7 @@
     .hero-card p{color:var(--muted)}
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}.stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;transition:transform .18s ease, box-shadow .18s ease}.stat strong{display:block;font-family:"Instrument Serif",serif;font-size:30px;font-weight:400}.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.stat:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
     .toolbar{display:flex;flex-wrap:wrap;gap:10px;padding:14px 0 10px;position:sticky;top:var(--toolbar-top,67px);background:var(--bg);z-index:30;border-bottom:1px solid color-mix(in srgb,var(--border) 80%, transparent)}
+    .filter-meta{font-size:13px;color:var(--muted);padding-top:8px}
     .chip{border:1px solid var(--border);background:var(--surface);padding:10px 14px;border-radius:999px;color:var(--muted);cursor:pointer;min-height:42px;white-space:nowrap;transition:all .16s ease}.chip:hover{border-color:color-mix(in srgb,var(--primary) 35%, var(--border));color:var(--text)}.chip.active{background:linear-gradient(180deg,var(--primary),color-mix(in srgb,var(--primary) 82%, #000));border-color:var(--primary);color:#fff}
     section{padding:34px 0;scroll-margin-top:140px}.head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}.head h2{font-family:"Instrument Serif",serif;font-size:38px;font-weight:400}.head p{max-width:58ch;color:var(--muted)}
     section + section{border-top:1px dashed color-mix(in srgb,var(--border) 70%, transparent)}
@@ -39,6 +40,9 @@
     .row{display:flex;justify-content:space-between;gap:12px;align-items:start}.name{font-family:"Instrument Serif",serif;font-size:30px;font-weight:400}.tag{font-size:12px;font-weight:700;background:var(--primary-soft);color:var(--primary);padding:6px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em}
     .price{font-size:14px;color:var(--muted)} .price strong{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400;color:var(--text)}
     .desc{color:var(--muted)} .pills{display:flex;flex-wrap:wrap;gap:8px}.pill{font-size:12px;padding:7px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .linkbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid var(--border);background:var(--surface2);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:600;transition:all .16s ease}
+    .linkbtn:hover{border-color:color-mix(in srgb,var(--primary) 35%, var(--border));background:color-mix(in srgb,var(--primary-soft) 55%, var(--surface2))}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}.mini h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.mini ul{margin:0;padding-left:18px;color:var(--muted)}.mini li{margin:6px 0}.ok h4{color:var(--success)}.warn h4{color:var(--warn)}
     .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:0 5px 16px rgba(0,0,0,.05)}
     .compare{overflow:auto}.compare table{width:100%;min-width:760px;border-collapse:collapse;font-size:14px}.compare th,.compare td{padding:14px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}.compare th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);position:sticky;top:0;background:var(--surface)} .compare tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface2) 35%, transparent)}
@@ -100,6 +104,7 @@
       <button class="chip" data-filter="ops" type="button" aria-pressed="false">Pulizie</button>
       <button class="chip" data-filter="locks" type="button" aria-pressed="false">Smart lock</button>
     </nav>
+    <div class="filter-meta" id="filterMeta" aria-live="polite"></div>
 
     <section data-group="messaging">
       <div class="head">
@@ -116,6 +121,7 @@
             <div class="mini warn"><h4>Da considerare</h4><ul><li>Compliance italiana non nativa</li><li>Smart lock e dispositivi avanzati nei piani superiori</li><li>Prezzi in dollari</li></ul></div>
           </div>
           <div class="pills"><span class="pill">Airbnb</span><span class="pill">Booking.com</span><span class="pill">Vrbo</span><span class="pill">dynamic pricing</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://hospitable.com/pricing" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="messaging pms">
           <div class="row"><div class="name">Hostex</div><div class="tag">Budget AI</div></div>
@@ -143,6 +149,7 @@
           <div class="price"><strong>da 3,95€</strong>/proprietà/mese</div>
           <p class="desc">Chekin è una delle soluzioni più rilevanti per il check-in online e la gestione della compliance in Italia. Include funzioni per registrazione ospiti, verifica identità e supporto ai flussi richiesti per Alloggiati Web e ISTAT.</p>
           <div class="pills"><span class="pill">Alloggiati Web</span><span class="pill">ISTAT</span><span class="pill">ID verification</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://chekin.com/it/prezzo/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="checkin locks">
           <div class="row"><div class="name">Vikey</div><div class="tag">Focus Italia</div></div>
@@ -170,12 +177,14 @@
           <div class="price"><strong>fascia entry-mid</strong></div>
           <p class="desc">Smoobu è spesso indicato come soluzione semplice ed efficace per host e piccoli property manager. Supporta channel management, sincronizzazione in tempo reale e integrazioni utili per il mercato degli affitti brevi.</p>
           <div class="pills"><span class="pill">channel manager</span><span class="pill">multi-canale</span><span class="pill">Vikey integration</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.smoobu.com/it/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="pms checkin">
           <div class="row"><div class="name">Lodgify</div><div class="tag">Sito + PMS</div></div>
           <div class="price"><strong>da 13€ / da 33€</strong> secondo piano e mercato</div>
           <p class="desc">Lodgify combina PMS, booking engine e sito prenotazione diretta. Nelle fonti recenti dedicate al mercato italiano viene descritto anche come soluzione con registrazione ospiti e invio schedine/alloggiati integrati in alcuni piani e contesti di offerta.</p>
           <div class="pills"><span class="pill">website builder</span><span class="pill">booking engine</span><span class="pill">gestione diretta</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.lodgify.com/it/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="pms messaging pricing ops locks">
           <div class="row"><div class="name">Hostaway</div><div class="tag">Per portfolio ampi</div></div>
@@ -203,12 +212,14 @@
           <div class="price"><strong>per listing</strong></div>
           <p class="desc">PriceLabs è una delle piattaforme più citate per dynamic pricing e revenue management nel settore degli affitti brevi. Le fonti ufficiali evidenziano sincronizzazione quotidiana, pricing forward-looking e numerose integrazioni con PMS e channel manager.</p>
           <div class="pills"><span class="pill">daily sync</span><span class="pill">market data</span><span class="pill">reporting</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://hello.pricelabs.co/it/dynamic-pricing/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="pricing">
           <div class="row"><div class="name">Beyond</div><div class="tag">Alternativa nota</div></div>
           <div class="price"><strong>comparativo</strong></div>
           <p class="desc">Beyond è una delle principali alternative nel dynamic pricing e compare spesso nei confronti diretti con PriceLabs e Wheelhouse. Può essere interessante per chi desidera un approccio specifico alla gestione tariffaria.</p>
           <div class="pills"><span class="pill">pricing automation</span><span class="pill">market-based</span><span class="pill">comparativi</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.beyondpricing.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="pricing">
           <div class="row"><div class="name">Wheelhouse</div><div class="tag">Gestione tariffaria</div></div>
@@ -230,12 +241,14 @@
           <div class="price"><strong>pricing dedicato</strong></div>
           <p class="desc">Turno è una delle piattaforme più citate per programmare pulizie in automatico e coordinare i cleaner nel settore degli affitti brevi. È particolarmente utile quando la rotazione tra un soggiorno e l’altro è frequente.</p>
           <div class="pills"><span class="pill">cleaning scheduling</span><span class="pill">marketplace cleaner</span><span class="pill">automation</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://turno.com/pricing/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
         <article class="card" data-tags="ops messaging">
           <div class="row"><div class="name">Breezeway</div><div class="tag">Operations pro</div></div>
           <div class="price"><strong>su richiesta</strong></div>
           <p class="desc">Breezeway è orientato alla property care e all’operations management, con checklist, coordinamento del personale e flussi operativi più strutturati. È particolarmente adatto a gestioni più complesse o team articolati.</p>
           <div class="pills"><span class="pill">property care</span><span class="pill">checklist</span><span class="pill">team workflow</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.breezeway.io/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
         </article>
       </div>
     </section>
@@ -325,6 +338,7 @@
     const topBar = document.querySelector('.top');
     const toolbar = document.querySelector('.toolbar');
     const STORAGE_KEY = 'airbnb-host-tools-theme';
+    const filterMeta = document.getElementById('filterMeta');
 
     const getStoredTheme = () => {
       try {
@@ -398,6 +412,7 @@
       if (filter === 'all') {
         cards.forEach((card) => card.classList.remove('hidden'));
         sections.forEach((section) => section.classList.remove('hidden'));
+        if (filterMeta) filterMeta.textContent = `Stai visualizzando tutte le categorie (${sections.length} sezioni).`;
         return;
       }
 
@@ -409,6 +424,10 @@
         if (sectionMatches && !firstVisibleSection) firstVisibleSection = section;
       });
 
+      if (filterMeta) {
+        const visibleSections = sections.filter((section) => !section.classList.contains('hidden')).length;
+        filterMeta.textContent = `Filtro attivo: ${filter}. Sezioni visibili: ${visibleSections}.`;
+      }
       scrollToSection(firstVisibleSection);
     };
 
@@ -418,6 +437,8 @@
         applyFilter(chip.dataset.filter || 'all');
       });
     });
+
+    applyFilter('all');
 
     const updateToolbarOffset = () => {
       if (!topBar || !toolbar) return;
