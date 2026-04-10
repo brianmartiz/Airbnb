@@ -4,7 +4,7 @@
     *{box-sizing:border-box} html,body{margin:0;padding:0} body{font-family:Inter,system-ui,-apple-system,sans-serif;background:
       radial-gradient(1200px 440px at 10% -25%, color-mix(in srgb,var(--primary-soft) 80%, transparent), transparent 70%),
       radial-gradient(900px 500px at 95% -15%, color-mix(in srgb,var(--surface2) 95%, transparent), transparent 75%),
-      var(--bg);color:var(--text);line-height:1.62}
+      var(--bg);color:var(--text);line-height:1.68}
     a{color:inherit} button{font:inherit} h1,h2,h3,h4,p{margin:0}
     .wrap{max-width:1260px;margin:0 auto;padding:0 20px}
     .top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--surface) 88%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 3px 14px rgba(0,0,0,.04)}
@@ -22,7 +22,14 @@
     .toolbar{display:flex;flex-wrap:wrap;gap:10px;padding:14px 0 10px;position:sticky;top:var(--toolbar-top,67px);background:var(--bg);z-index:30;border-bottom:1px solid color-mix(in srgb,var(--border) 80%, transparent)}
     .filter-meta{font-size:13px;color:var(--muted);padding-top:8px}
     .chip{border:1px solid var(--border);background:var(--surface);padding:10px 14px;border-radius:999px;color:var(--muted);cursor:pointer;min-height:42px;white-space:nowrap;transition:all .16s ease;touch-action:manipulation;font-weight:600}.chip:hover{border-color:color-mix(in srgb,var(--primary) 35%, var(--border));color:var(--text)}.chip.active{background:linear-gradient(180deg,var(--primary),#e31c5f);border-color:var(--primary);color:#fff;box-shadow:0 6px 16px color-mix(in srgb,var(--primary) 35%, transparent)}
-    section{padding:34px 0;scroll-margin-top:140px}.head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}.head h2{font-family:"Instrument Serif",serif;font-size:38px;font-weight:400}.head p{max-width:58ch;color:var(--muted)}
+    section{padding:34px 0;scroll-margin-top:140px}.head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}.head h2{font-family:"Instrument Serif",serif;font-size:38px;font-weight:400}.head p{max-width:58ch;color:var(--muted);font-size:15px}
+    section[data-group] .head{padding-left:12px;border-left:4px solid color-mix(in srgb,var(--primary) 30%, var(--border));}
+    #messaging .head{border-left-color:#ff385c}
+    #checkin .head{border-left-color:#2bc7b8}
+    #pms .head{border-left-color:#8ea8ff}
+    #pricing .head{border-left-color:#f2ad57}
+    #ops .head{border-left-color:#00a699}
+    #locks .head{border-left-color:#b38cff}
     section + section{border-top:1px dashed color-mix(in srgb,var(--border) 70%, transparent)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
     .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:14px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
@@ -35,7 +42,7 @@
     .profile-grid{grid-template-columns:repeat(3,minmax(220px,1fr))}
     .row{display:flex;justify-content:space-between;gap:12px;align-items:start}.name{font-family:"Instrument Serif",serif;font-size:30px;font-weight:400}.tag{font-size:12px;font-weight:700;background:var(--primary-soft);color:var(--primary);padding:6px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em}
     .price{font-size:14px;color:var(--muted)} .price strong{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400;color:var(--text)}
-    .desc{color:var(--muted)} .pills{display:flex;flex-wrap:wrap;gap:8px}.pill{font-size:12px;padding:7px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
+    .desc{color:var(--muted);font-size:14px} .pills{display:flex;flex-wrap:wrap;gap:8px}.pill{font-size:12px;padding:7px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
     .card-actions{display:flex;gap:8px;flex-wrap:wrap}
     .linkbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid var(--border);background:var(--surface2);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:600;transition:all .16s ease}
     .linkbtn:hover{border-color:color-mix(in srgb,var(--primary) 35%, var(--border));background:color-mix(in srgb,var(--primary-soft) 55%, var(--surface2))}
