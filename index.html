@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guida interattiva 2026 agli strumenti migliori per host Airbnb: messaggistica, check-in, PMS, prezzi dinamici, pulizie e smart lock." />
+  <title>Strumenti per host Airbnb v.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <svg viewBox="0 0 48 48" fill="none" aria-label="logo guida affitti brevi">
+          <rect width="48" height="48" rx="14" fill="currentColor" style="color:var(--primary)"/>
+          <path d="M24 10c-4.1 5.2-10 11.8-10 18.2a10 10 0 0 0 20 0C34 21.8 28.1 15.2 24 10Z" stroke="white" stroke-width="2.2"/>
+          <circle cx="24" cy="28" r="3.2" fill="white"/>
+        </svg>
+        <div>
+          <h1>Strumenti per host Airbnb</h1>
+          <span>Guida per affitti brevi di pochi giorni o qualche settimana</span>
+        </div>
+      </div>
+      <button class="theme" id="themeBtn" type="button" aria-pressed="false">Tema</button>
+    </div>
+  </header>
+  <noscript>
+    <div class="wrap" style="padding-top:12px;color:#9b4e1e;font-weight:600;">Attiva JavaScript per usare filtri e cambio tema.</div>
+  </noscript>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">guida interattiva 2026</div>
+          <div class="hero-title">Più prenotazioni, meno caos operativo: la cassetta attrezzi dell’host Airbnb moderno</div>
+          <p class="hero-text">Se gestisci uno o più appartamenti su Airbnb, qui trovi una selezione pratica di strumenti che ti fanno risparmiare tempo e migliorano l’esperienza ospite: messaggi automatici, check-in digitale, PMS, pricing dinamico, pulizie e smart lock. L’obiettivo è semplice: lavorare meglio, aumentare recensioni positive e proteggere i margini, con un focus concreto sul contesto italiano.</p>
+          <div class="stats">
+            <div class="stat"><strong>16</strong><span>strumenti selezionati</span></div>
+            <div class="stat"><strong>6</strong><span>categorie</span></div>
+            <div class="stat"><strong>20+</strong><span>fonti utilizzate</span></div>
+            <div class="stat"><strong>IT</strong><span>focus compliance</span></div>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3>Criteri di selezione</h3>
+          <p>Abbiamo privilegiato soluzioni realmente utili nel quotidiano di un host: facilità d’uso, automazioni che riducono attività ripetitive, integrazioni affidabili e costi sostenibili. Dove possibile, prezzi e funzionalità sono verificati su fonti ufficiali; se il listino non è pubblico, trovi un’indicazione orientativa per aiutarti a valutare rapidamente.</p>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="toolbar" aria-label="Filtra le categorie">
+      <button class="chip active" data-filter="all" type="button" aria-pressed="true">Tutti</button>
+      <button class="chip" data-filter="messaging" type="button" aria-pressed="false">Messaggistica</button>
+      <button class="chip" data-filter="checkin" type="button" aria-pressed="false">Check-in</button>
+      <button class="chip" data-filter="pms" type="button" aria-pressed="false">PMS</button>
+      <button class="chip" data-filter="pricing" type="button" aria-pressed="false">Prezzi dinamici</button>
+      <button class="chip" data-filter="ops" type="button" aria-pressed="false">Pulizie</button>
+      <button class="chip" data-filter="locks" type="button" aria-pressed="false">Smart lock</button>
+    </nav>
+    <div class="filter-meta" id="filterMeta" aria-live="polite"></div>
+
+    <section class="advisor">
+      <div class="head">
+        <h2>Percorso consigliato (stile consulenziale)</h2>
+        <p>Un framework pratico per scegliere lo stack giusto senza perdere settimane in test casuali: parti dalle priorità operative, poi ottimizza per ricavi e automazione.</p>
+      </div>
+      <div class="grid advisor-grid">
+        <article class="card step"><strong>1. Audit operativo</strong><p class="desc">Mappa colli di bottiglia: tempo su messaggi, check-in, overbooking, pricing, coordinamento pulizie.</p></article>
+        <article class="card step"><strong>2. Stack minimo</strong><p class="desc">Attiva 1-2 strumenti ad alto impatto (es. messaggistica + check-in) per ottenere risultati rapidi e misurabili.</p></article>
+        <article class="card step"><strong>3. Integrazione & compliance</strong><p class="desc">Verifica integrazioni reali e adempimenti locali (Alloggiati/ISTAT) prima di scalare su più unità.</p></article>
+        <article class="card step"><strong>4. Ottimizzazione ricavi</strong><p class="desc">Inserisci pricing dinamico e workflow operations solo dopo stabilizzazione del flusso base.</p></article>
+      </div>
+    </section>
+
+    <section data-group="messaging">
+      <div class="head">
+        <h2>Messaggistica automatica</h2>
+        <p>Una messaggistica ben impostata ti fa guadagnare ore ogni settimana: risposte rapide, istruzioni chiare e meno stress nei momenti critici (pre check-in, arrivo, checkout).</p>
+      </div>
+      <div class="grid">
+        <article class="card featured" data-tags="messaging pms pricing locks ops">
+          <div class="row"><div class="name">Hospitable</div><div class="tag">Soluzione completa</div></div>
+          <div class="price"><strong>$29</strong>/mese Host · $59 Professional · $99 Mogul</div>
+          <p class="desc">Hospitable è una delle soluzioni più complete per host di affitti brevi: unisce inbox centralizzata, messaggi automatici, calendario multi-canale e dynamic pricing integrato. I piani più alti includono anche funzionalità per smart devices e operatività più avanzata.</p>
+          <div class="split">
+            <div class="mini ok"><h4>Punti forti</h4><ul><li>Messaggistica automatica e unificata</li><li>Dynamic pricing incluso nei piani Host e superiori</li><li>Integrazione multi-canale</li><li>Adatto a portfolio piccoli e medi</li></ul></div>
+            <div class="mini warn"><h4>Da considerare</h4><ul><li>Compliance italiana non nativa</li><li>Smart lock e dispositivi avanzati nei piani superiori</li><li>Prezzi in dollari</li></ul></div>
+          </div>
+          <div class="pills"><span class="pill">Airbnb</span><span class="pill">Booking.com</span><span class="pill">Vrbo</span><span class="pill">dynamic pricing</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://hospitable.com/pricing" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="messaging pms">
+          <div class="row"><div class="name">Hostex</div><div class="tag">Budget AI</div></div>
+          <div class="price"><strong>da $4,90</strong>/mese</div>
+          <p class="desc">Hostex è una soluzione orientata alla messaggistica automatica con supporto AI e automazioni granulari. Può essere interessante per chi cerca un costo di ingresso contenuto e vuole centralizzare le attività più ripetitive.</p>
+          <div class="pills"><span class="pill">HostGPT</span><span class="pill">template</span><span class="pill">automation</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://hostex.io/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="messaging">
+          <div class="row"><div class="name">Messaggi Airbnb</div><div class="tag">Incluso</div></div>
+          <div class="price"><strong>€0</strong></div>
+          <p class="desc">La funzione nativa di messaggi programmati di Airbnb può essere sufficiente per host con una o poche unità. È una soluzione semplice per inviare istruzioni pre-arrivo, reminder di check-in e messaggi post-soggiorno senza costi aggiuntivi.</p>
+          <div class="pills"><span class="pill">scheduled messages</span><span class="pill">placeholder</span><span class="pill">solo Airbnb</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.airbnb.it/help/article/2648" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section data-group="checkin">
+      <div class="head">
+        <h2>Check-in digitale e compliance</h2>
+        <p>In Italia il check-in non è solo accoglienza: è anche compliance. Qui trovi strumenti per semplificare registrazione ospiti, invii obbligatori e controllo accessi senza compromettere l’esperienza.</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-tags="checkin locks">
+          <div class="row"><div class="name">Chekin</div><div class="tag">Compliance IT</div></div>
+          <div class="price"><strong>da 3,95€</strong>/proprietà/mese</div>
+          <p class="desc">Chekin è una delle soluzioni più rilevanti per il check-in online e la gestione della compliance in Italia. Include funzioni per registrazione ospiti, verifica identità e supporto ai flussi richiesti per Alloggiati Web e ISTAT.</p>
+          <div class="pills"><span class="pill">Alloggiati Web</span><span class="pill">ISTAT</span><span class="pill">ID verification</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://chekin.com/it/prezzo/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="checkin locks">
+          <div class="row"><div class="name">Vikey</div><div class="tag">Focus Italia</div></div>
+          <div class="price"><strong>modulare</strong></div>
+          <p class="desc">Vikey propone un approccio orientato ad accessi smart, check-in digitale e automazione dell’ingresso in struttura. È una soluzione interessante per chi vuole combinare hardware e flussi di accoglienza in un contesto di affitti brevi.</p>
+          <div class="pills"><span class="pill">smart access</span><span class="pill">self check-in</span><span class="pill">supporto locale</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://vikey.it/en/home-page/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="checkin">
+          <div class="row"><div class="name">CheckIn Facile</div><div class="tag">Licenza una tantum</div></div>
+          <div class="price"><strong>~€2.600</strong> una tantum</div>
+          <p class="desc">CheckIn Facile può essere preso in considerazione da gestori con più unità o orizzonte di utilizzo pluriennale. Il modello una tantum può risultare interessante quando si cerca un costo ricorrente più basso nel lungo periodo.</p>
+          <div class="pills"><span class="pill">multi-unità</span><span class="pill">licenza</span><span class="pill">workflow check-in</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://checkinfacile.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section data-group="pms">
+      <div class="head">
+        <h2>PMS e channel manager</h2>
+        <p>Il PMS giusto è il tuo “centro di controllo”: calendari sincronizzati, meno overbooking, regole coerenti e operatività più fluida quando aumentano unità e canali.</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-tags="pms messaging">
+          <div class="row"><div class="name">Smoobu</div><div class="tag">Per host piccoli</div></div>
+          <div class="price"><strong>fascia entry-mid</strong></div>
+          <p class="desc">Smoobu è spesso indicato come soluzione semplice ed efficace per host e piccoli property manager. Supporta channel management, sincronizzazione in tempo reale e integrazioni utili per il mercato degli affitti brevi.</p>
+          <div class="pills"><span class="pill">channel manager</span><span class="pill">multi-canale</span><span class="pill">Vikey integration</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.smoobu.com/it/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="pms checkin">
+          <div class="row"><div class="name">Lodgify</div><div class="tag">Sito + PMS</div></div>
+          <div class="price"><strong>da 13€ / da 33€</strong> secondo piano e mercato</div>
+          <p class="desc">Lodgify combina PMS, booking engine e sito prenotazione diretta. Nelle fonti recenti dedicate al mercato italiano viene descritto anche come soluzione con registrazione ospiti e invio schedine/alloggiati integrati in alcuni piani e contesti di offerta.</p>
+          <div class="pills"><span class="pill">website builder</span><span class="pill">booking engine</span><span class="pill">gestione diretta</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.lodgify.com/it/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="pms messaging pricing ops locks">
+          <div class="row"><div class="name">Hostaway</div><div class="tag">Per portfolio ampi</div></div>
+          <div class="price"><strong>su richiesta</strong></div>
+          <p class="desc">Hostaway è spesso menzionato tra i PMS più robusti per portafogli più estesi o operazioni più strutturate. È particolarmente adatto quando servono integrazioni numerose, workflow operativi e gestione su più canali.</p>
+          <div class="pills"><span class="pill">scalabilità</span><span class="pill">operations</span><span class="pill">integrazioni</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.hostaway.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="pms">
+          <div class="row"><div class="name">Guesty</div><div class="tag">Enterprise</div></div>
+          <div class="price"><strong>custom</strong></div>
+          <p class="desc">Guesty è una soluzione orientata a realtà più strutturate, con funzioni ampie per owner reporting, gestione avanzata e centralizzazione di operazioni complesse. Può essere eccessivo per chi gestisce poche unità.</p>
+          <div class="pills"><span class="pill">owner reporting</span><span class="pill">enterprise</span><span class="pill">portfolio</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.guesty.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section data-group="pricing">
+      <div class="head">
+        <h2>Prezzi dinamici</h2>
+        <p>Il dynamic pricing aiuta a non lasciare soldi sul tavolo: adegua le tariffe in automatico in base a domanda, stagionalità ed eventi locali, migliorando occupazione e ricavo medio notte.</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-tags="pricing">
+          <div class="row"><div class="name">PriceLabs</div><div class="tag">Revenue management</div></div>
+          <div class="price"><strong>per listing</strong></div>
+          <p class="desc">PriceLabs è una delle piattaforme più citate per dynamic pricing e revenue management nel settore degli affitti brevi. Le fonti ufficiali evidenziano sincronizzazione quotidiana, pricing forward-looking e numerose integrazioni con PMS e channel manager.</p>
+          <div class="pills"><span class="pill">daily sync</span><span class="pill">market data</span><span class="pill">reporting</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://hello.pricelabs.co/it/dynamic-pricing/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="pricing">
+          <div class="row"><div class="name">Beyond</div><div class="tag">Alternativa nota</div></div>
+          <div class="price"><strong>comparativo</strong></div>
+          <p class="desc">Beyond è una delle principali alternative nel dynamic pricing e compare spesso nei confronti diretti con PriceLabs e Wheelhouse. Può essere interessante per chi desidera un approccio specifico alla gestione tariffaria.</p>
+          <div class="pills"><span class="pill">pricing automation</span><span class="pill">market-based</span><span class="pill">comparativi</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.beyondpricing.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="pricing">
+          <div class="row"><div class="name">Wheelhouse</div><div class="tag">Gestione tariffaria</div></div>
+          <div class="price"><strong>orientativo</strong></div>
+          <p class="desc">Wheelhouse è spesso incluso nei confronti tra strumenti di pricing per affitti brevi. È una soluzione da valutare soprattutto quando si desidera confrontare approcci diversi alla costruzione del prezzo automatico.</p>
+          <div class="pills"><span class="pill">pricing tool</span><span class="pill">analytics</span><span class="pill">market compare</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.usewheelhouse.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section data-group="ops">
+      <div class="head">
+        <h2>Pulizie e operations</h2>
+        <p>Pulizie e operations sono il cuore delle recensioni a 5 stelle. Con i giusti strumenti coordini team, checklist e tempi tra check-out/check-in riducendo errori e ritardi.</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-tags="ops">
+          <div class="row"><div class="name">Turno</div><div class="tag">Pulizie automatiche</div></div>
+          <div class="price"><strong>pricing dedicato</strong></div>
+          <p class="desc">Turno è una delle piattaforme più citate per programmare pulizie in automatico e coordinare i cleaner nel settore degli affitti brevi. È particolarmente utile quando la rotazione tra un soggiorno e l’altro è frequente.</p>
+          <div class="pills"><span class="pill">cleaning scheduling</span><span class="pill">marketplace cleaner</span><span class="pill">automation</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://turno.com/pricing/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+        <article class="card" data-tags="ops messaging">
+          <div class="row"><div class="name">Breezeway</div><div class="tag">Operations pro</div></div>
+          <div class="price"><strong>su richiesta</strong></div>
+          <p class="desc">Breezeway è orientato alla property care e all’operations management, con checklist, coordinamento del personale e flussi operativi più strutturati. È particolarmente adatto a gestioni più complesse o team articolati.</p>
+          <div class="pills"><span class="pill">property care</span><span class="pill">checklist</span><span class="pill">team workflow</span></div>
+          <div class="card-actions"><a class="linkbtn" href="https://www.breezeway.io/" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section data-group="locks">
+      <div class="head">
+        <h2>Smart lock e accessi</h2>
+        <p>L’accesso autonomo riduce frizioni e messaggi last-minute: la differenza la fanno affidabilità hardware, codici automatici e integrazione con il tuo flusso operativo.</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-tags="locks">
+          <div class="row"><div class="name">Nuki · Igloohome · August</div><div class="tag">Brand ricorrenti</div></div>
+          <div class="price"><strong>hardware-first</strong></div>
+          <p class="desc">Questi marchi ricorrono frequentemente nelle guide dedicate alle smart lock per affitti brevi. La scelta dipende da compatibilità con la porta, gestione codici, accesso remoto, batterie, fallback meccanico e integrazioni disponibili.</p>
+          <div class="pills"><span class="pill">self access</span><span class="pill">entry codes</span><span class="pill">remote control</span></div>
+          <div class="card-actions">
+            <a class="linkbtn" href="https://nuki.io/it/" target="_blank" rel="noopener noreferrer">Nuki ↗</a>
+            <a class="linkbtn" href="https://www.igloohome.co/" target="_blank" rel="noopener noreferrer">Igloohome ↗</a>
+            <a class="linkbtn" href="https://august.com/" target="_blank" rel="noopener noreferrer">August ↗</a>
+          </div>
+        </article>
+        <article class="card" data-tags="locks checkin pms">
+          <div class="row"><div class="name">Stack software + lock</div><div class="tag">Scelta consigliata</div></div>
+          <div class="price"><strong>integrazione > brand</strong></div>
+          <p class="desc">Nella pratica operativa, il valore di una serratura smart dipende spesso più dall’integrazione con PMS, check-in digitale e workflow di accesso che dal brand in sé. Una soluzione ben integrata tende a ridurre errori e interventi manuali.</p>
+          <div class="pills"><span class="pill">workflow</span><span class="pill">codici automatici</span><span class="pill">log accessi</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="head">
+        <h2>Confronto rapido</h2>
+        <p>Usa questa tabella come scorciatoia decisionale: in un colpo d’occhio capisci cosa fa ogni strumento, per chi è adatto e dove può creare valore nel tuo setup.</p>
+      </div>
+      <div class="panel compare">
+        <table>
+          <thead>
+            <tr><th>Strumento</th><th>Ruolo principale</th><th>Prezzo</th><th>Compliance IT</th><th>Messaggi auto</th><th>Adatto a</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hospitable</td><td>PMS + messaging + pricing</td><td>$29 / $59 / $99</td><td><span class="bad">No nativa</span></td><td><span class="good">Sì</span></td><td>host singoli e piccoli gestori</td></tr>
+            <tr><td>Chekin</td><td>check-in digitale</td><td>da 3,95€/prop/mese</td><td><span class="good">Sì</span></td><td><span class="mid">limitato</span></td><td>host con focus su burocrazia IT</td></tr>
+            <tr><td>Vikey</td><td>accessi smart + check-in</td><td>modulare</td><td><span class="good">Sì</span></td><td><span class="bad">non focus</span></td><td>host con self check-in</td></tr>
+            <tr><td>Smoobu</td><td>channel manager / PMS</td><td>entry-mid</td><td><span class="mid">via integrazioni</span></td><td><span class="mid">base</span></td><td>1-3 proprietà</td></tr>
+            <tr><td>PriceLabs</td><td>dynamic pricing</td><td>per listing</td><td><span class="bad">No</span></td><td><span class="bad">No</span></td><td>ottimizzazione ricavi</td></tr>
+            <tr><td>Turno</td><td>pulizie</td><td>pricing dedicato</td><td><span class="bad">No</span></td><td><span class="bad">No</span></td><td>rotazioni frequenti</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="head">
+        <h2>Fonti</h2>
+        <p>Per aiutarti a scegliere con più sicurezza, trovi fonti ufficiali e comparative utili per verificare prezzi, funzioni e integrazioni prima di attivare un piano.</p>
+      </div>
+      <div class="sourcegrid">
+        <div class="panel">
+          <h3>Fonti ufficiali</h3>
+          <ul>
+            <li><a href="https://hospitable.com/pricing" target="_blank" rel="noopener noreferrer">Hospitable pricing</a></li>
+            <li><a href="https://hospitable.com/airbnb-pricing-strategy" target="_blank" rel="noopener noreferrer">Hospitable dynamic pricing</a></li>
+            <li><a href="https://chekin.com/it/prezzo/" target="_blank" rel="noopener noreferrer">Chekin prezzi</a></li>
+            <li><a href="https://hello.pricelabs.co/it/dynamic-pricing/" target="_blank" rel="noopener noreferrer">PriceLabs dynamic pricing</a></li>
+            <li><a href="https://turno.com/pricing/" target="_blank" rel="noopener noreferrer">Turno pricing</a></li>
+            <li><a href="https://www.breezeway.io/breezeway-pricing" target="_blank" rel="noopener noreferrer">Breezeway pricing</a></li>
+            <li><a href="https://www.smoobu.com/it/integrations/vikey/" target="_blank" rel="noopener noreferrer">Smoobu x Vikey</a></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Fonti editoriali e comparative</h3>
+          <ul>
+            <li><a href="https://www.lodgify.com/it/confronto/miglior-pms-case-vacanze/" target="_blank" rel="noopener noreferrer">Lodgify – migliori PMS per affitti brevi</a></li>
+            <li><a href="https://www.lodgify.com/blog/it/gestione-affitti-brevi-strumenti/" target="_blank" rel="noopener noreferrer">Lodgify – strumenti per gestione affitti brevi</a></li>
+            <li><a href="https://www.smoobu.com/it/blog/migliori-strumenti-dynamic-pricing/" target="_blank" rel="noopener noreferrer">Smoobu – dynamic pricing tools</a></li>
+            <li><a href="https://www.smoobu.com/it/blog/miglior-channel-manager-affitti-brevi/" target="_blank" rel="noopener noreferrer">Smoobu – channel manager</a></li>
+            <li><a href="https://learn.10xbnb.com/airbnb-dynamic-pricing-tools-comparison/" target="_blank" rel="noopener noreferrer">Confronto strumenti pricing 2026</a></li>
+            <li><a href="https://www.beyondpricing.com/beyond-vs-wheelhouse" target="_blank" rel="noopener noreferrer">Beyond vs Wheelhouse</a></li>
+            <li><a href="https://www.breezeway.io/blog/best-smart-locks-for-airbnb" target="_blank" rel="noopener noreferrer">Breezeway – smart locks guide</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Consiglio operativo: scegli 1-2 strumenti “ad alto impatto” da implementare subito (es. messaggistica + check-in, oppure PMS + pricing), misura i risultati per 30 giorni e poi ottimizza lo stack. I prezzi possono variare per mercato, numero di unità e piano; verifica sempre listino e integrazioni aggiornate prima dell’attivazione.</div>
+  </main>
+
+    <script src="assets/app.js" defer></script>
+</body>
+</html>
